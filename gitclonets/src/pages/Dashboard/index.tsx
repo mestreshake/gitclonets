@@ -18,9 +18,7 @@ const Dashboard: React.FC = () => {
   const [newRepo, setNewRepo] = useState("");
   const [repositories, setRepositories] = useState<Repository[]>([]);
 
-  async function handleAddRepository(
-    event: FormEvent<HTMLFormElement>
-  ): Promise<void> {
+  async function handleAddRepository(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
     const response = await api.get(`repos/${newRepo}`);
 
@@ -45,11 +43,12 @@ const Dashboard: React.FC = () => {
 
       <Repositories>
         {repositories.map((repository) => (
-          <a key={repository.full_name} href="teste">
-            <img
-              src={repository.owner.avatar_url}
-              alt={repository.owner.login}
-            />
+          <a
+            key={repository.full_name}
+            href={`https://github.com/${repository.full_name} `}
+            target="_blank"
+          >
+            <img src={repository.owner.avatar_url} alt={repository.owner.login} />
             <div>
               <strong>{repository.full_name}</strong>
               <p>{repository.description}</p>
